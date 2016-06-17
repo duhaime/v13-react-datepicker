@@ -2708,7 +2708,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 
 	  handleChange: function handleChange(event) {
-	    console.log("change", event);
+	    console.log("change", event.target.value);
 	    var value = event.target.value;
 	    var date = moment(value, this.props.dateFormat, true);
 
@@ -2724,7 +2724,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 
 	  handleKeyDown: function handleKeyDown(event) {
-	    console.log("keydown", event);
+	    console.log("keydown", event.key);
 	    switch (event.key) {
 	      case "Enter":
 	        event.preventDefault();
