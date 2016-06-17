@@ -2708,6 +2708,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 
 	  handleChange: function handleChange(event) {
+	    console.log("change", event);
 	    var value = event.target.value;
 	    var date = moment(value, this.props.dateFormat, true);
 
@@ -2723,6 +2724,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 
 	  handleKeyDown: function handleKeyDown(event) {
+	    console.log("keydown", event);
 	    switch (event.key) {
 	      case "Enter":
 	        event.preventDefault();
