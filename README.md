@@ -4,7 +4,7 @@
 [![devDependency Status](https://david-dm.org/Hacker0x01/react-datepicker/dev-status.svg)](https://david-dm.org/Hacker0x01/react-datepicker#info=devDependencies)
 [![Downloads](http://img.shields.io/npm/dm/react-datepicker.svg)](https://npmjs.org/package/react-datepicker)
 
-A simple and reusable Datepicker component for React ([Demo](https://hacker0x01.github.io/react-datepicker/))
+A simple and reusable Datepicker that adds text input methods from v20 of ([React-datepicker](https://github.com/Hacker0x01/react-datepicker)) into v13 of the same to support an app built on React 0.13.3 ([Demo](https://hacker0x01.github.io/react-datepicker/))
 
 ![](https://cloud.githubusercontent.com/assets/1412392/5339491/c40de124-7ee1-11e4-9f07-9276e2545f27.png)
 
