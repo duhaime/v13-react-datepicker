@@ -12,12 +12,30 @@ var DateInput = React.createClass( {
     };
   },
 
+  safeDateFormat: function(date) {
+    return !!date ? date.format(this.props.dateFormat) : null;
+  },
+
+  componentWillMount: function() {
+    this.setState({
+        maybeDate: this.safeDateFormat(this.props.date)
+    });
+  },
+
   componentDidMount: function() {
     this.toggleFocus( this.props.focus );
   },
 
   componentWillReceiveProps: function( newProps ) {
+    console.log("sending new props:", newProps, this);
     this.toggleFocus( newProps.focus );
+
+    if (newProps.date != this.props.date) {
+      console.log("updating maybeDate");
+      this.setState({
+        maybeDate: this.safeDateFormat(newProps.date)
+      });
+    }
   },
 
   toggleFocus: function( focus ) {
@@ -29,23 +47,36 @@ var DateInput = React.createClass( {
   },
 
   handleChange: function( event ) {
-    console.log( "change", event.target.value );
+    console.log( "sent change", event.target.value, this );
     var value = event.target.value;
     var date = moment( value, this.props.dateFormat, true );
 
     if ( date.isValid() ) {
+      console.log("date is valid", date);
       this.props.setSelected( new DateUtil( date ) );
-    } else if ( value === "" ) {
-      this.props.clearSelected();
+    } else {
+        
+      // if the value is empty, erase the selected value,
+      // else update the selected value
+      if ( value === "" ) {
+        this.props.clearSelected();
+      } else {
+        console.log("date is not valid", value, date);
+        
+        this.setState({
+          maybeDate: value
+        });
+
+      }
     }
   },
 
-  safeDateFormat: function( date ) {
+  handlsafeDateFormat: function( date ) {
     return !!date ? date.format( this.props.dateFormat ) : null;
   },
 
   handleKeyDown: function( event ) {
-    console.log( "keydown", event.key );
+    console.log( "sent keydown", event.key, this );
     switch ( event.key ) {
     case "Enter":
       event.preventDefault();
@@ -69,7 +100,7 @@ var DateInput = React.createClass( {
         ref="input"
         type="text"
         name={this.props.name}
-        value={this.safeDateFormat( this.props.date )}
+        value={this.state.maybeDate}
         onClick={this.handleClick}
         onKeyDown={this.handleKeyDown}
         onFocus={this.props.onFocus}
