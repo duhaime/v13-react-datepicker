@@ -2706,11 +2706,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 
 	  componentWillReceiveProps: function componentWillReceiveProps(newProps) {
-	    console.log("sending new props:", newProps, this);
 	    this.toggleFocus(newProps.focus);
 
 	    if (newProps.date != this.props.date) {
-	      console.log("updating maybeDate");
 	      this.setState({
 	        maybeDate: this.safeDateFormat(newProps.date)
 	      });
@@ -2726,12 +2724,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 
 	  handleChange: function handleChange(event) {
-	    console.log("sent change", event.target.value, this);
 	    var value = event.target.value;
 	    var date = moment(value, this.props.dateFormat, true);
 
 	    if (date.isValid()) {
-	      console.log("date is valid", date);
 	      this.props.setSelected(new DateUtil(date));
 	    } else {
 
@@ -2740,8 +2736,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	      if (value === "") {
 	        this.props.clearSelected();
 	      } else {
-	        console.log("date is not valid", value, date);
-
 	        this.setState({
 	          maybeDate: value
 	        });
@@ -2754,7 +2748,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 
 	  handleKeyDown: function handleKeyDown(event) {
-	    console.log("sent keydown", event.key, this);
 	    switch (event.key) {
 	      case "Enter":
 	        event.preventDefault();
